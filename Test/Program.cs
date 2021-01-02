@@ -10,12 +10,20 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Car[] cars =
+            SportCar[] cars =
             {
-                new Car("Tesla",300),
-                new Car("shesterka", 60),
-                new Car("Honda",150)
+                new SportCar("tesla",300),
+                new SportCar("shesterka", 60),
+                new SportCar("honda",150)
             };
+
+            ElectroCar[] cars1 =
+            {
+                new ElectroCar("tesla",300),
+                new ElectroCar("shesterka", 60),
+                new ElectroCar("honda",150)
+            };
+
             Tool[] tools =
              {
                 new Tool("scissors"),
@@ -25,14 +33,18 @@ namespace Test
 
             Array.Sort(cars);
 
-            Garage garage = new Garage(cars, tools);
+            Garage<SportCar, Tool> garage = new Garage<SportCar, Tool>(cars, tools);
 
-            foreach (var car in garage)
+            Garage<ElectroCar,Tool> garage1 = new Garage<ElectroCar, Tool>(cars1, tools);
+
+    
+            foreach (var car in garage1)
             {
                 Console.WriteLine(car.ToString());
+                Console.WriteLine(car.GetType().Name);
             }
 
-            garage[0] = new Car("lambo", 10);
+            garage[0] = new SportCar("lambo", 10);
 
             foreach (var car in garage)
             {
@@ -43,6 +55,7 @@ namespace Test
             {
                 Console.WriteLine(tool.ToString());
             }
+
             Console.ReadKey();
 
         }

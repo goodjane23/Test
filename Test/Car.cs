@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    class Car:IComparable
+    abstract class Car:IComparable
     {
         int speed;
         string name;
@@ -29,6 +29,11 @@ namespace Test
         public override string ToString()
         {
             return $"{name} : {speed}";
+        }
+        public virtual void Upgrade(int speed)
+        {
+            speed++;
+            Console.WriteLine("speed: {0}", speed);
         }
     }
 }
